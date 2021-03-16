@@ -1,0 +1,26 @@
+/*
+ * Media Query To
+ */
+@mixin mqt($width) {
+    @media screen and (max-width: $width + 'px') {
+        @content;
+    }
+}
+
+/*
+ * Media Query From
+ */
+@mixin mqf($width) {
+    @media screen and (min-width: $width + 'px') {
+        @content;
+    }
+}
+
+/*
+ * Media Query Between
+ */
+@mixin mqb($min, $max) {
+    @media screen and (min-width: $min + 'px') and (max-width: $max + 'px') {
+        @content;
+    }
+}

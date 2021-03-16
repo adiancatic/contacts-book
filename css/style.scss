@@ -1,0 +1,41 @@
+/*
+ * 1 - Helpers
+ */
+@import '1-helpers/variables';
+@import '1-helpers/mixins';
+
+/*
+ * 2 - Basics
+ */
+@import '2-basics/base';
+@import '2-basics/buttons';
+@import '2-basics/misc';
+@import '2-basics/typography';
+
+
+/*
+ * 3 - Components
+ */
+@import '3-components/contact-item';
+@import '3-components/input-panel';
+
+
+/*
+ * 4 - Layout
+ */
+@import '4-layout/nav';
+@import '4-layout/footer';
+
+.app {
+    display: flex;
+    flex: 1;
+    aside {
+        width: 380px;
+        background-color: $white;
+        border-right: 1px solid $gray200;
+    }
+    main {
+        flex: 1;
+        background-color: $gray100;
+    }
+}

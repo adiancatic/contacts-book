@@ -1,0 +1,21 @@
+footer {
+    .footer-container {
+        padding: 40px 0;
+        background-color: $gray200;
+    }
+    .footer-credits {
+        background-color: $gray300;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        a {
+            display: flex;
+            font-size: 14px;
+            color: $gray900;
+            svg {
+                fill: $gray900;
+                margin-right: 6px;
+            }
+        }
+    }
+}

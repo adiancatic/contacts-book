@@ -1,0 +1,39 @@
+.input-panel {
+    height: 300px;
+    background-color: $white;
+    box-shadow: $bs-small;
+}
+
+.input-panel-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    h3 {
+        margin: 0;
+    }
+    transition: $tr-default;
+    transform: translateY(-100%);
+    &.js-active {
+        transform: translateY(0);
+    }
+}
+
+.backdrop {
+    background-color: rgba($black, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    visibility: hidden;
+    pointer-events: none;
+    transition: $tr-default;
+    &.js-active {
+        transition: $tr-default;
+        visibility: visible;
+        pointer-events: initial;
+    }
+}
