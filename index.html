@@ -21,7 +21,7 @@
         <div class="app">
             <aside>
 
-                <div class="contact-item">
+                <!--<div class="contact-item">
                     <div class="avatar">
                         <img src="https://www.unsplash.it/100" alt="">
                     </div>
@@ -32,7 +32,7 @@
                         <button type="button" class="btn-call"><i class="fas fa-phone"></i></button>
                         <button type="button" class="btn-more"><i class="fas fa-angle-right"></i></button>
                     </div>
-                </div>
+                </div>-->
 
             </aside>
             <main>
@@ -54,14 +54,24 @@
                     <div class="form-wrapper">
                         <form id="add-contact-form" action="">
 
+                            <div id="avatar-drop-region" class="field avatar">
+                                <span class="drop-message">Drag & Drop images or click to upload</span>
+                                <div id="avatar-preview" class="avatar-preview"></div>
+                            </div>
+
                             <div class="field">
-                                <input type="text" id="first-name" name="first-name">
+                                <input type="text" id="first-name" name="firstName">
                                 <label for="first-name">First name</label>
                             </div>
 
                             <div class="field">
-                                <input type="text" id="last-name" name="last-name">
+                                <input type="text" id="last-name" name="lastName">
                                 <label for="last-name">Last name</label>
+                            </div>
+
+                            <div class="field">
+                                <input type="text" id="phone-number" name="phoneNumber">
+                                <label for="phone-number">Phone number</label>
                             </div>
 
                             <button type="submit" onclick="addContact()">Add</button>
@@ -76,6 +86,7 @@
     </div>
 
     <script src="plugins/jquery/jquery-3.6.0.min.js"></script>
+<!--    <script src="js/drag-and-drop.js"></script>-->
     <script src="js/app.js"></script>
 </body>
 </html>
