@@ -32,6 +32,8 @@ function addContact() {
     const contact = getNewContact();
     storeContact(contact);
     domAddContact(contact);
+    $('.input-panel-wrapper').removeClass('js-active');
+    contactForm[0].reset();
 }
 
 function getNewContact() {
