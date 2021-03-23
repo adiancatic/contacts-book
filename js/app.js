@@ -181,10 +181,10 @@ function domUpdateContactList() {
  */
 
 function contactSearchBox() {
+    handleContactSearchClearBtn();
     searchBox.on('input', () => {
         handleContactSearchBox();
     });
-
     searchClearBtn.on('click', () => {
         searchBox.val('');
         handleContactSearchBox();
@@ -192,18 +192,18 @@ function contactSearchBox() {
 }
 
 function handleContactSearchBox() {
-    let searchValue = searchBox.val();
-
-    if(searchValue.length > 0 && !searchClearBtn.hasClass('js-active')) {
-        searchClearBtn.addClass('js-active');
-    } else if(searchValue.length <= 0 && searchClearBtn.hasClass('js-active')) {
-        searchClearBtn.removeClass('js-active');
-    }
-
+    handleContactSearchClearBtn();
     let oFilter = {
-        searchValue: searchValue ?? '',
+        searchValue:  searchBox.val() ?? '',
     };
-
     storeFilters(oFilter);
     domUpdateContactList();
+}
+
+function handleContactSearchClearBtn() {
+    if(searchBox.val().length > 0 && !searchClearBtn.hasClass('js-active')) {
+        searchClearBtn.addClass('js-active');
+    } else if(searchBox.val().length <= 0 && searchClearBtn.hasClass('js-active')) {
+        searchClearBtn.removeClass('js-active');
+    }
 }

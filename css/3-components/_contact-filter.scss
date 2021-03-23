@@ -1,0 +1,51 @@
+.contact-filter {
+    display: flex;
+    padding: 14px 20px;
+    background-color: $gray100;
+    .contact-search {
+        width: 100%;
+        position: relative;
+        input {
+            width: 100%;
+            height: 38px;
+            padding: 0 40px 0 10px;
+            border: 0;
+            border-radius: 6px;
+            &:focus {
+                outline: 0;
+            }
+        }
+        .clear-search {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            i {
+                width: 24px;
+                height: 24px;
+                border-radius: 100%;
+                font-size: 14px;
+                color: $gray500;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: $tr-quick;
+            }
+            &.js-active {
+                display: flex;
+            }
+            &:hover, &:focus, &:active {
+                i {
+                    background-color: $gray200;
+                    color: $gray800;
+                }
+            }
+        }
+    }
+}
