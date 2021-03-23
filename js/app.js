@@ -1,5 +1,9 @@
 const CONTACTS = 'contacts';
+const CONTACT_FILTERS = 'contactFilters';
 const contactForm = $('#add-contact-form');
+const contactList = $('.app .contact-list');
+const searchBox = $('.contact-filter .contact-search input');
+const searchClearBtn = $('.contact-filter .contact-search .clear-search');
 
 $(document).ready(() => {
     handleInputPanelToggle();
@@ -7,10 +11,14 @@ $(document).ready(() => {
     if(!localStorage[CONTACTS]) {
         localStorage.setItem(CONTACTS, JSON.stringify([]));
     }
+    if(!localStorage[CONTACT_FILTERS]) {
+        localStorage.setItem(CONTACT_FILTERS, JSON.stringify({}));
+    }
 
     contactForm.on('submit', (e) => e.preventDefault());
 
     domAddContactsFromStorage();
+    contactSearchBox();
 });
 
 function handleInputPanelToggle() {
@@ -50,10 +58,26 @@ function storeContact(contact) {
     if(contact === {} || !localStorage.getItem(CONTACTS)) {
         return;
     }
+
     let contacts = JSON.parse(localStorage.getItem(CONTACTS));
+
     contacts.push(contact);
+
     localStorage.setItem(CONTACTS, JSON.stringify(contacts));
-    console.log(JSON.parse(localStorage.getItem(CONTACTS)))
+
+    console.log(JSON.parse(localStorage.getItem(CONTACTS))); // TODO remove
+}
+
+function storeFilters(filter) {
+    if(filter === {} || !localStorage.getItem(CONTACT_FILTERS)) {
+        return;
+    }
+
+    let filters = JSON.parse(localStorage.getItem(CONTACT_FILTERS));
+
+    filters.searchValue = filter.searchValue;
+
+    localStorage.setItem(CONTACT_FILTERS, JSON.stringify(filters));
 }
 
 /*
@@ -119,15 +143,67 @@ function domAddContact(oContact) {
     contact.append(contactInfo);
     contact.append(controls);
 
-    $('.app aside').append(contact);
+    contactList.append(contact);
 }
 
 function domAddContactsFromStorage() {
-    if(!localStorage.getItem(CONTACTS)) {
+    if(!localStorage.getItem(CONTACTS) && !localStorage.getItem(CONTACT_FILTERS)) {
         return;
     }
     let contacts = JSON.parse(localStorage.getItem(CONTACTS));
+    let filters = JSON.parse(localStorage.getItem(CONTACT_FILTERS));
+
+    /*
+     * Check if any filters set and filter contacts accordingly
+     */
+    if(filters) {
+        const searchValue = filters.searchValue.replace(/[[{}()*+?^$|\]\.\\]/g, "\\$&");
+        const regex = new RegExp(searchValue, 'i');
+        contacts = contacts.filter((o) => {
+            return o.firstName.match(regex)
+                || o.lastName.match(regex)
+                || (o.firstName + ' ' + o.lastName).match(regex);
+        });
+    }
+
     for (const key in contacts) {
         domAddContact(contacts[key]);
     }
+}
+
+function domUpdateContactList() {
+    contactList.empty();
+    domAddContactsFromStorage();
+}
+
+/*
+ * Contact filtering
+ */
+
+function contactSearchBox() {
+    searchBox.on('input', () => {
+        handleContactSearchBox();
+    });
+
+    searchClearBtn.on('click', () => {
+        searchBox.val('');
+        handleContactSearchBox();
+    });
+}
+
+function handleContactSearchBox() {
+    let searchValue = searchBox.val();
+
+    if(searchValue.length > 0 && !searchClearBtn.hasClass('js-active')) {
+        searchClearBtn.addClass('js-active');
+    } else if(searchValue.length <= 0 && searchClearBtn.hasClass('js-active')) {
+        searchClearBtn.removeClass('js-active');
+    }
+
+    let oFilter = {
+        searchValue: searchValue ?? '',
+    };
+
+    storeFilters(oFilter);
+    domUpdateContactList();
 }
