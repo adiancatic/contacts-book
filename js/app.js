@@ -157,13 +157,15 @@ function domAddContactsFromStorage() {
      * Check if any filters set and filter contacts accordingly
      */
     if(filters) {
-        const searchValue = filters.searchValue.replace(/[[{}()*+?^$|\]\.\\]/g, "\\$&");
-        const regex = new RegExp(searchValue, 'i');
-        contacts = contacts.filter((o) => {
-            return o.firstName.match(regex)
-                || o.lastName.match(regex)
-                || (o.firstName + ' ' + o.lastName).match(regex);
-        });
+        if(filters.searchValue) {
+            const searchValue = filters.searchValue.replace(/[[{}()*+?^$|\]\.\\]/g, "\\$&");
+            const regex = new RegExp(searchValue, 'i');
+            contacts = contacts.filter((o) => {
+                return o.firstName.match(regex)
+                    || o.lastName.match(regex)
+                    || (o.firstName + ' ' + o.lastName).match(regex);
+            });
+        }
     }
 
     for (const key in contacts) {
