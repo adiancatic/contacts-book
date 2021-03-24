@@ -2,18 +2,22 @@
     display: flex;
     padding: 14px 20px;
     background-color: $gray100;
-    .contact-search {
+    .filter-field {
         width: 100%;
+        height: 38px;
+        padding: 0;
+        border: 0;
+        border-radius: 6px;
+        font-size: 14px;
+        &:focus {
+            outline: 0;
+        }
+    }
+    .contact-search {
+        flex: 1;
         position: relative;
-        input {
-            width: 100%;
-            height: 38px;
+        .filter-field {
             padding: 0 40px 0 10px;
-            border: 0;
-            border-radius: 6px;
-            &:focus {
-                outline: 0;
-            }
         }
         .clear-search {
             display: none;
@@ -45,6 +49,36 @@
                     background-color: $gray200;
                     color: $gray800;
                 }
+            }
+        }
+    }
+    .contact-sort {
+        margin-left: 6px;
+        .select-wrapper {
+            position: relative;
+            width: 100%;
+            .filter-field {
+                padding: 0 24px 0 10px;
+                color: $gray600;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+            }
+            &::after {
+                content: '\f107';
+                font-family: 'Font Awesome 5 Pro';
+                font-weight: 300;
+                font-size: 20px;
+                color: $gray400;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 30px;
+                pointer-events: none;
             }
         }
     }

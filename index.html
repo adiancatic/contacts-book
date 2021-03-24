@@ -22,8 +22,17 @@
             <aside>
                 <div class="contact-filter">
                     <div class="contact-search">
-                        <input type="text" placeholder="Search...">
+                        <input type="text" placeholder="Search..." class="filter-field">
                         <button type="button" class="clear-search"><i class="fal fa-times"></i></button>
+                    </div>
+                    <div class="contact-sort">
+                        <div class="select-wrapper">
+                            <select name="sort-by" class="filter-field">
+                                <option value="-1">Filter by</option>
+                                <option value="firstName">First name</option>
+                                <option value="lastName">Last name</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="contact-list">

@@ -1,9 +1,11 @@
 const CONTACTS = 'contacts';
 const CONTACT_FILTERS = 'contactFilters';
+
 const contactForm = $('#add-contact-form');
 const contactList = $('.app .contact-list');
 const searchBox = $('.contact-filter .contact-search input');
 const searchClearBtn = $('.contact-filter .contact-search .clear-search');
+const sortField = $('.contact-filter .contact-sort select');
 
 $(document).ready(() => {
     handleInputPanelToggle();
@@ -18,7 +20,11 @@ $(document).ready(() => {
     contactForm.on('submit', (e) => e.preventDefault());
 
     domAddContactsFromStorage();
+    contactSearchInit();
     contactSearchBox();
+
+    contactSortInit();
+    contactSort();
 });
 
 function handleInputPanelToggle() {
@@ -69,15 +75,17 @@ function storeContact(contact) {
 }
 
 function storeFilters(filter) {
-    if(filter === {} || !localStorage.getItem(CONTACT_FILTERS)) {
-        return;
-    }
+    localStorage.setItem(CONTACT_FILTERS, JSON.stringify(filter));
+}
 
+function filterGetSearch() {
     let filters = JSON.parse(localStorage.getItem(CONTACT_FILTERS));
+    return filters.searchValue ?? '';
+}
 
-    filters.searchValue = filter.searchValue;
-
-    localStorage.setItem(CONTACT_FILTERS, JSON.stringify(filters));
+function filterGetSort() {
+    let filters = JSON.parse(localStorage.getItem(CONTACT_FILTERS));
+    return filters.sortValue ?? '';
 }
 
 /*
@@ -166,6 +174,21 @@ function domAddContactsFromStorage() {
                     || (o.firstName + ' ' + o.lastName).match(regex);
             });
         }
+        if(filters.sortValue) {
+            contacts = contacts.sort(function(a, b) {
+                if(filters.sortValue === 'firstName') {
+                    if(a.firstName < b.firstName) return -1;
+                    if(a.firstName > b.firstName) return 1;
+                    return 0;
+                }
+                if(filters.sortValue === 'lastName') {
+                    if(a.lastName < b.lastName) return -1;
+                    if(a.lastName > b.lastName) return 1;
+                    return 0;
+                }
+                return 0;
+            });
+        }
     }
 
     for (const key in contacts) {
@@ -182,6 +205,14 @@ function domUpdateContactList() {
  * Contact filtering
  */
 
+function contactSearchInit() {
+    const searchValue = filterGetSearch();
+    if(!searchValue) {
+        return;
+    }
+    searchBox.val(searchValue);
+}
+
 function contactSearchBox() {
     handleContactSearchClearBtn();
     searchBox.on('input', () => {
@@ -196,7 +227,8 @@ function contactSearchBox() {
 function handleContactSearchBox() {
     handleContactSearchClearBtn();
     let oFilter = {
-        searchValue:  searchBox.val() ?? '',
+        searchValue: searchBox.val() ?? '',
+        sortValue: filterGetSort(),
     };
     storeFilters(oFilter);
     domUpdateContactList();
@@ -208,4 +240,29 @@ function handleContactSearchClearBtn() {
     } else if(searchBox.val().length <= 0 && searchClearBtn.hasClass('js-active')) {
         searchClearBtn.removeClass('js-active');
     }
+}
+
+function contactSortInit() {
+    const selectedSortOption = filterGetSort();
+    if(!selectedSortOption) {
+        return;
+    }
+
+    const options = sortField.children();
+    options.each(function () {
+        if($(this).val() === selectedSortOption) {
+            $(this).prop('selected', true);
+        }
+    })
+}
+
+function contactSort() {
+    sortField.on('change', () => {
+        let oFilter = {
+            searchValue: filterGetSearch(),
+            sortValue: sortField.val() ?? '',
+        };
+        storeFilters(oFilter);
+        domUpdateContactList();
+    });
 }
