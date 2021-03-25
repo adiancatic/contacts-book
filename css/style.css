@@ -403,6 +403,7 @@ a:hover, a:focus, a:active {
 
 .contact-filter .contact-sort {
   margin-left: 6px;
+  display: flex;
 }
 
 .contact-filter .contact-sort .select-wrapper {
@@ -416,6 +417,8 @@ a:hover, a:focus, a:active {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .contact-filter .contact-sort .select-wrapper::after {
@@ -433,6 +436,41 @@ a:hover, a:focus, a:active {
   bottom: 0;
   width: 30px;
   pointer-events: none;
+}
+
+.contact-filter .contact-sort .order {
+  border: 0;
+  background-color: #FFF;
+  border-left: 1px solid #F2F2F7;
+  border-radius: 0 6px 6px 0;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.contact-filter .contact-sort .order::after {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  font-family: 'Font Awesome 5 Pro';
+  font-weight: 300;
+  width: 16px;
+  transition: all 0.175s ease;
+}
+
+.contact-filter .contact-sort .order[data-state="default"]::after {
+  content: '\f111';
+}
+
+.contact-filter .contact-sort .order[data-state="asc"]::after {
+  content: '\f062';
+}
+
+.contact-filter .contact-sort .order[data-state="desc"]::after {
+  content: '\f063';
+}
+
+.contact-filter .contact-sort .order:hover::after, .contact-filter .contact-sort .order:focus::after, .contact-filter .contact-sort .order:active::after {
+  color: #EA3D67;
 }
 
 /*

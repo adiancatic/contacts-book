@@ -1,11 +1,15 @@
 const CONTACTS = 'contacts';
 const CONTACT_FILTERS = 'contactFilters';
 
+const orderStates = ['default', 'asc', 'desc'];
+
 const contactForm = $('#add-contact-form');
 const contactList = $('.app .contact-list');
 const searchBox = $('.contact-filter .contact-search input');
 const searchClearBtn = $('.contact-filter .contact-search .clear-search');
 const sortField = $('.contact-filter .contact-sort select');
+const orderBtn = $('.contact-filter .contact-sort .js-order');
+
 
 $(document).ready(() => {
     handleInputPanelToggle();
@@ -25,6 +29,9 @@ $(document).ready(() => {
 
     contactSortInit();
     contactSort();
+
+    contactOrderInit();
+    contactOrder();
 });
 
 function handleInputPanelToggle() {
@@ -86,6 +93,11 @@ function filterGetSearch() {
 function filterGetSort() {
     let filters = JSON.parse(localStorage.getItem(CONTACT_FILTERS));
     return filters.sortValue ?? '';
+}
+
+function filterGetOrder() {
+    let filters = JSON.parse(localStorage.getItem(CONTACT_FILTERS));
+    return filters.orderValue ?? '';
 }
 
 /*
@@ -165,6 +177,7 @@ function domAddContactsFromStorage() {
      * Check if any filters set and filter contacts accordingly
      */
     if(filters) {
+
         if(filters.searchValue) {
             const searchValue = filters.searchValue.replace(/[[{}()*+?^$|\]\.\\]/g, "\\$&");
             const regex = new RegExp(searchValue, 'i');
@@ -174,6 +187,7 @@ function domAddContactsFromStorage() {
                     || (o.firstName + ' ' + o.lastName).match(regex);
             });
         }
+
         if(filters.sortValue) {
             contacts = contacts.sort(function(a, b) {
                 if(filters.sortValue === 'firstName') {
@@ -189,6 +203,25 @@ function domAddContactsFromStorage() {
                 return 0;
             });
         }
+
+        if(filters.orderValue) {
+            const comparator = (a, b) => {
+                if(filters.orderValue === 'asc') {
+                    return a > b;
+                } else if(filters.orderValue === 'desc') {
+                    return a < b;
+                }
+                return 0;
+            };
+            if(filters.sortValue === 'firstName') {
+                contacts = contacts.sort((a, b) => comparator(a.firstName, b.firstName));
+            } else if(filters.sortValue === 'lastName') {
+                contacts = contacts.sort((a, b) => comparator(a.lastName, b.lastName));
+            } else {
+                contacts = contacts.sort((a, b) => comparator(a.id, b.id));
+            }
+        }
+
     }
 
     for (const key in contacts) {
@@ -229,6 +262,7 @@ function handleContactSearchBox() {
     let oFilter = {
         searchValue: searchBox.val() ?? '',
         sortValue: filterGetSort(),
+        orderValue: filterGetOrder(),
     };
     storeFilters(oFilter);
     domUpdateContactList();
@@ -241,6 +275,8 @@ function handleContactSearchClearBtn() {
         searchClearBtn.removeClass('js-active');
     }
 }
+
+// Sort
 
 function contactSortInit() {
     const selectedSortOption = filterGetSort();
@@ -261,8 +297,37 @@ function contactSort() {
         let oFilter = {
             searchValue: filterGetSearch(),
             sortValue: sortField.val() ?? '',
+            orderValue: filterGetOrder(),
         };
         storeFilters(oFilter);
         domUpdateContactList();
     });
+}
+
+// Order
+
+function contactOrder() {
+    orderBtn.on('click', () => {
+        const currentState = orderBtn.attr('data-state');
+        const currentStateIndex = orderStates.findIndex((e) => e === currentState);
+        const nextStateIndex = (currentStateIndex === orderStates.length - 1) ? 0 : currentStateIndex + 1;
+
+        let oFilter = {
+            searchValue: filterGetSearch(),
+            sortValue: filterGetSort(),
+            orderValue: orderStates[nextStateIndex] ?? '',
+        };
+
+        storeFilters(oFilter);
+        domUpdateContactList();
+        orderBtn.attr('data-state', orderStates[nextStateIndex]);
+    });
+}
+
+function contactOrderInit() {
+    const selectedOrderOption = filterGetOrder();
+    if(!selectedOrderOption) {
+        return;
+    }
+    orderBtn.attr('data-state', selectedOrderOption);
 }
