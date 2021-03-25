@@ -1,7 +1,91 @@
 .input-panel {
-    height: 300px;
     background-color: $white;
-    box-shadow: $bs-small;
+    box-shadow: $bs-large;
+    pointer-events: initial;
+    .panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid $gray200;
+        padding: 14px 24px;
+        .header-title {
+            margin: 0;
+            font-weight: $fw-regular;
+        }
+        .input-panel-toggle {
+            background: none;
+            border: 0;
+            cursor: pointer;
+            color: $gray500;
+            width: 36px;
+            height: 36px;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: $tr-quick;
+            &:hover, &:focus, &:active {
+                background-color: $gray200;
+                color: $gray800;
+            }
+        }
+    }
+    .panel-body {
+        padding: 30px 24px;
+        .add-contact-form {
+            display: flex;
+            flex-wrap: wrap;
+            .col-avatar {
+                flex: 25%;
+            }
+            .col-fields {
+                flex: 75%;
+                display: flex;
+                flex-wrap: wrap;
+                .field {
+                    flex: 50%;
+                }
+            }
+            .col-submit {
+                flex: 100%;
+            }
+        }
+    }
+    .field {
+        padding: 0 20px;
+        margin-bottom: 20px;
+        label {
+            display: none;
+        }
+        input {
+            font-size: 28px;
+            border: 0;
+            border-bottom: 1px solid $gray200;
+            width: 100%;
+            padding: 14px 0;
+            font-weight: $fw-semibold;
+            &::placeholder {
+                color: $gray400;
+            }
+            &:focus {
+                outline: 0;
+            }
+        }
+        &.avatar {
+            width: 200px;
+            height: 200px;
+            border: 2px dashed $gray300;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .drop-message {
+                text-align: center;
+                font-size: 14px;
+                color: $gray500;
+            }
+        }
+    }
 }
 
 .input-panel-wrapper {
@@ -10,11 +94,9 @@
     left: 0;
     right: 0;
     z-index: 100;
-    h3 {
-        margin: 0;
-    }
     transition: $tr-default;
     transform: translateY(-100%);
+    pointer-events: none;
     &.js-active {
         transform: translateY(0);
     }
@@ -28,12 +110,12 @@
     right: 0;
     bottom: 0;
     z-index: 99;
-    visibility: hidden;
+    opacity: 0;
     pointer-events: none;
     transition: $tr-default;
     &.js-active {
         transition: $tr-default;
-        visibility: visible;
+        opacity: 100%;
         pointer-events: initial;
     }
 }

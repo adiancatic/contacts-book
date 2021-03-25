@@ -65,36 +65,49 @@
                 <div class="input-panel">
 
                     <header class="panel-header">
-                        <h3>title</h3>
+                        <h4 class="header-title">Add new contact</h4>
                         <button type="button" class="input-panel-toggle"><i class="fal fa-times"></i></button>
                     </header>
                     
-                    <div class="form-wrapper">
-                        <form id="add-contact-form">
+                    <div class="panel-body">
+                        <div class="form-wrapper">
+                            <form id="add-contact-form" class="add-contact-form">
 
-                            <div id="avatar-drop-region" class="field avatar">
-                                <span class="drop-message">Drag & Drop images or click to upload</span>
-                                <div id="avatar-preview" class="avatar-preview"></div>
-                            </div>
+                                <div class="form-col col-avatar">
+                                    <div id="avatar-drop-region" class="field avatar">
+                                        <span class="drop-message">Drag & Drop images or click to upload</span>
+                                        <div id="avatar-preview" class="avatar-preview"></div>
+                                    </div>
+                                </div>
 
-                            <div class="field">
-                                <input type="text" id="first-name" name="firstName">
-                                <label for="first-name">First name</label>
-                            </div>
+                                <div class="form-col col-fields">
+                                    <div class="field">
+                                        <input type="text" id="first-name" name="firstName" placeholder="First name">
+                                        <label for="first-name">First name</label>
+                                    </div>
 
-                            <div class="field">
-                                <input type="text" id="last-name" name="lastName">
-                                <label for="last-name">Last name</label>
-                            </div>
+                                    <div class="field">
+                                        <input type="text" id="last-name" name="lastName" placeholder="Last name">
+                                        <label for="last-name">Last name</label>
+                                    </div>
 
-                            <div class="field">
-                                <input type="text" id="phone-number" name="phoneNumber">
-                                <label for="phone-number">Phone number</label>
-                            </div>
+                                    <div class="field">
+                                        <input type="text" id="phone-number" name="phoneNumber" placeholder="Phone number">
+                                        <label for="phone-number">Phone number</label>
+                                    </div>
 
-                            <button type="submit" onclick="addContact()">Add</button>
+                                    <div class="field">
+                                        <input type="text" id="e-mail" name="email" placeholder="E-mail">
+                                        <label for="e-mail">E-mail</label>
+                                    </div>
+                                </div>
 
-                        </form>
+                                <div class="form-col col-submit">
+                                    <button type="submit" onclick="addContact()">Add</button>
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
 
                 </div>

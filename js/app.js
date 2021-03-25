@@ -4,6 +4,10 @@ const CONTACT_FILTERS = 'contactFilters';
 
 const orderStates = ['default', 'asc', 'desc'];
 
+const inputPanelToggle = $('.input-panel-toggle');
+const inputPanel = $('.input-panel-wrapper');
+const backdrop = $('.backdrop');
+
 const contactForm = $('#add-contact-form');
 const contactList = $('.app .contact-list');
 const searchBox = $('.contact-filter .contact-search input');
@@ -31,14 +35,17 @@ $(document).ready(() => {
 });
 
 function handleInputPanelToggle() {
-    const toggle = $('.input-panel-toggle');
-    const inputPanel = $('.input-panel-wrapper');
-    const backdrop = $('.backdrop');
+    inputPanelToggle.on('click', () => toggleInputPanel());
+    $(backdrop, '.js-active').on('click', () => toggleInputPanel());
+}
 
-    toggle.on('click', () => {
-        backdrop.fadeToggle();
-        inputPanel.toggleClass('js-active');
-    })
+function toggleInputPanel() {
+    inputPanel.toggleClass('js-active');
+    if(inputPanel.hasClass('js-active')) {
+        backdrop.addClass('js-active');
+    } else {
+        backdrop.removeClass('js-active');
+    }
 }
 
 function localStorageInit() {
@@ -61,7 +68,7 @@ function addContact() {
     const contact = getNewContact();
     storeContact(contact);
     domAddContact(contact);
-    $('.input-panel-wrapper').removeClass('js-active');
+    inputPanel.removeClass('js-active');
     contactForm[0].reset();
 }
 
@@ -202,7 +209,7 @@ function domAddContactsFromStorage() {
         }
 
         if(filters.sortValue) {
-            contacts = contacts.sort(function(a, b) {
+            contacts = contacts.sort((a, b) => {
                 if(filters.sortValue === 'firstName') {
                     if(a.firstName < b.firstName) return -1;
                     if(a.firstName > b.firstName) return 1;

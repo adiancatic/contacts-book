@@ -297,9 +297,110 @@ a:hover, a:focus, a:active {
 }
 
 .input-panel {
-  height: 300px;
   background-color: #FFF;
-  box-shadow: 0 6px 30px 0 rgba(1, 1, 31, 0.08);
+  box-shadow: 0 10px 30px 0 rgba(1, 1, 31, 0.2);
+  pointer-events: initial;
+}
+
+.input-panel .panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #D9E0E7;
+  padding: 14px 24px;
+}
+
+.input-panel .panel-header .header-title {
+  margin: 0;
+  font-weight: 400;
+}
+
+.input-panel .panel-header .input-panel-toggle {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: #6D7785;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.175s ease;
+}
+
+.input-panel .panel-header .input-panel-toggle:hover, .input-panel .panel-header .input-panel-toggle:focus, .input-panel .panel-header .input-panel-toggle:active {
+  background-color: #D9E0E7;
+  color: #2E3039;
+}
+
+.input-panel .panel-body {
+  padding: 30px 24px;
+}
+
+.input-panel .panel-body .add-contact-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input-panel .panel-body .add-contact-form .col-avatar {
+  flex: 25%;
+}
+
+.input-panel .panel-body .add-contact-form .col-fields {
+  flex: 75%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input-panel .panel-body .add-contact-form .col-fields .field {
+  flex: 50%;
+}
+
+.input-panel .panel-body .add-contact-form .col-submit {
+  flex: 100%;
+}
+
+.input-panel .field {
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.input-panel .field label {
+  display: none;
+}
+
+.input-panel .field input {
+  font-size: 28px;
+  border: 0;
+  border-bottom: 1px solid #D9E0E7;
+  width: 100%;
+  padding: 14px 0;
+  font-weight: 600;
+}
+
+.input-panel .field input::placeholder {
+  color: #97A2AE;
+}
+
+.input-panel .field input:focus {
+  outline: 0;
+}
+
+.input-panel .field.avatar {
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #C1CED8;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-panel .field.avatar .drop-message {
+  text-align: center;
+  font-size: 14px;
+  color: #6D7785;
 }
 
 .input-panel-wrapper {
@@ -310,10 +411,7 @@ a:hover, a:focus, a:active {
   z-index: 100;
   transition: all 0.4s ease;
   transform: translateY(-100%);
-}
-
-.input-panel-wrapper h3 {
-  margin: 0;
+  pointer-events: none;
 }
 
 .input-panel-wrapper.js-active {
@@ -328,14 +426,14 @@ a:hover, a:focus, a:active {
   right: 0;
   bottom: 0;
   z-index: 99;
-  visibility: hidden;
+  opacity: 0;
   pointer-events: none;
   transition: all 0.4s ease;
 }
 
 .backdrop.js-active {
   transition: all 0.4s ease;
-  visibility: visible;
+  opacity: 100%;
   pointer-events: initial;
 }
 
