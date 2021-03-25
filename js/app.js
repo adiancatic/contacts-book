@@ -1,3 +1,4 @@
+const NEXT_ID = 'nextId';
 const CONTACTS = 'contacts';
 const CONTACT_FILTERS = 'contactFilters';
 
@@ -14,14 +15,9 @@ const orderBtn = $('.contact-filter .contact-sort .js-order');
 $(document).ready(() => {
     handleInputPanelToggle();
 
-    if(!localStorage[CONTACTS]) {
-        localStorage.setItem(CONTACTS, JSON.stringify([]));
-    }
-    if(!localStorage[CONTACT_FILTERS]) {
-        localStorage.setItem(CONTACT_FILTERS, JSON.stringify({}));
-    }
-
     contactForm.on('submit', (e) => e.preventDefault());
+
+    localStorageInit();
 
     domAddContactsFromStorage();
     contactSearchInit();
@@ -43,6 +39,18 @@ function handleInputPanelToggle() {
         backdrop.fadeToggle();
         inputPanel.toggleClass('js-active');
     })
+}
+
+function localStorageInit() {
+    if(!localStorage[NEXT_ID]) {
+        localStorage.setItem(NEXT_ID, JSON.stringify(0));
+    }
+    if(!localStorage[CONTACTS]) {
+        localStorage.setItem(CONTACTS, JSON.stringify([]));
+    }
+    if(!localStorage[CONTACT_FILTERS]) {
+        localStorage.setItem(CONTACT_FILTERS, JSON.stringify({}));
+    }
 }
 
 /*
@@ -73,12 +81,17 @@ function storeContact(contact) {
     }
 
     let contacts = JSON.parse(localStorage.getItem(CONTACTS));
-
+    contact.id = nextId();
     contacts.push(contact);
-
     localStorage.setItem(CONTACTS, JSON.stringify(contacts));
 
     console.log(JSON.parse(localStorage.getItem(CONTACTS))); // TODO remove
+}
+
+function nextId() {
+    let id = JSON.parse(localStorage.getItem(NEXT_ID));
+    localStorage.setItem(NEXT_ID, JSON.stringify(id++));
+    return id;
 }
 
 function storeFilters(filter) {
