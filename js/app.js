@@ -79,6 +79,7 @@ function getNewContact() {
         const data = formData[key];
         contact[data.name] = data.value ?? '';
     }
+    contact['avatar'] = 'https://picsum.photos/id/' + Math.floor(Math.random() * 100) + '/256';
     return contact;
 }
 
@@ -100,6 +101,18 @@ function nextId() {
     const newId = id + 1;
     localStorage.setItem(NEXT_ID, JSON.stringify(newId));
     return id;
+}
+
+function getContactById(contactId) {
+    let contacts = JSON.parse(localStorage.getItem(CONTACTS));
+    if(!contacts) {
+        return;
+    }
+    for (const key in contacts) {
+        if(contacts[key].id === parseInt(contactId)) {
+            return contacts[key];
+        }
+    }
 }
 
 function storeFilters(filter) {
@@ -129,9 +142,11 @@ function domAddContact(oContact) {
     let template = $('.template-contact-item').clone();
     let contact = $($(template.prop('content')).prop('firstElementChild'));
 
+    contact.attr('data-id', oContact.id);
+
     contact.find('.avatar img')
-        .attr('src', 'https://www.unsplash.it/100')
-        .attr('alt', '');
+        .attr('src', oContact.avatar)
+        .attr('alt', oContact.firstName + ' ' + oContact.lastName);
 
     contact.find('.contact-info')
         .text(oContact.firstName + ' ' + oContact.lastName);
@@ -205,6 +220,42 @@ function domAddContactsFromStorage() {
 function domUpdateContactList() {
     contactList.empty();
     domAddContactsFromStorage();
+}
+
+function domShowContactDetailed(contact) {
+    const contactId = $(contact.closest('.contact-item')).attr('data-id');
+    const oContact = getContactById(contactId);
+    if(!oContact) {
+        return;
+    }
+    $('main').empty();
+    domRenderContactDetailed(oContact);
+}
+
+function domRenderContactDetailed(oContact) {
+    let template = $('.template-contact-view').clone();
+    let contact = $($(template.prop('content')).prop('firstElementChild'));
+
+    contact.find('.avatar img')
+        .attr('src', oContact.avatar)
+        .attr('alt', oContact.firstName + ' ' + oContact.lastName);
+
+    contact.find('.full-name .first-name')
+        .text(oContact.firstName);
+
+    contact.find('.full-name .last-name')
+        .text(oContact.lastName);
+
+    // contact.find('.most-recent-activity .activity')
+    //     .text();
+
+    contact.find('.contacts .phone-number')
+        .text(oContact.phoneNumber);
+
+    contact.find('.contacts .e-mail')
+        .text(oContact.email);
+
+    contact.appendTo('main');
 }
 
 /*

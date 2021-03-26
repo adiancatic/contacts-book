@@ -1,0 +1,28 @@
+.contact-view {
+    background-color: $white;
+    padding: 24px;
+    flex: 1;
+
+    .nav-bar {
+        display: flex;
+        justify-content: flex-end;
+        border-bottom: 1px solid $gray200;
+        padding: 10px 0;
+        margin-bottom: 24px;
+    }
+
+    .contact-info {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        .contact {
+            display: flex;
+            .avatar {
+                margin-right: 14px;
+                img {
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+}

@@ -17,7 +17,6 @@
  * 3 - Components
  */
 @import '3-components/contact-item';
-@import '3-components/contact-list';
 @import '3-components/input-panel';
 @import '3-components/contact-filter';
 //@import '3-components/drag-and-drop';
@@ -27,6 +26,8 @@
  * 4 - Layout
  */
 @import '4-layout/nav';
+@import '4-layout/contact-list';
+@import '4-layout/contact-view';
 @import '4-layout/footer';
 
 .app {
@@ -42,6 +43,8 @@
     }
     main {
         flex: 1;
+        display: flex;
+        flex-direction: column;
         background-color: $gray100;
     }
 }

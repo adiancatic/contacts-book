@@ -94,6 +94,25 @@ body > .container {
   color: #FFF;
 }
 
+.btn-close {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: #6D7785;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.175s ease;
+}
+
+.btn-close:hover, .btn-close:focus, .btn-close:active {
+  background-color: #D9E0E7;
+  color: #2E3039;
+}
+
 .img-cover {
   width: 100%;
   height: 100%;
@@ -296,10 +315,6 @@ a:hover, a:focus, a:active {
   border-bottom: 0;
 }
 
-.contact-list {
-  overflow-y: auto;
-}
-
 .input-panel {
   background-color: #FFF;
   box-shadow: 0 10px 30px 0 rgba(1, 1, 31, 0.2);
@@ -317,25 +332,6 @@ a:hover, a:focus, a:active {
 .input-panel .panel-header .header-title {
   margin: 0;
   font-weight: 400;
-}
-
-.input-panel .panel-header .input-panel-toggle {
-  background: none;
-  border: 0;
-  cursor: pointer;
-  color: #6D7785;
-  width: 36px;
-  height: 36px;
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.175s ease;
-}
-
-.input-panel .panel-header .input-panel-toggle:hover, .input-panel .panel-header .input-panel-toggle:focus, .input-panel .panel-header .input-panel-toggle:active {
-  background-color: #D9E0E7;
-  color: #2E3039;
 }
 
 .input-panel .panel-body {
@@ -599,6 +595,42 @@ a:hover, a:focus, a:active {
   background-position: center;
 }
 
+.contact-list {
+  overflow-y: auto;
+}
+
+.contact-view {
+  background-color: #FFF;
+  padding: 24px;
+  flex: 1;
+}
+
+.contact-view .nav-bar {
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #D9E0E7;
+  padding: 10px 0;
+  margin-bottom: 24px;
+}
+
+.contact-view .contact-info {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.contact-view .contact-info .contact {
+  display: flex;
+}
+
+.contact-view .contact-info .contact .avatar {
+  margin-right: 14px;
+}
+
+.contact-view .contact-info .contact .avatar img {
+  border-radius: 10px;
+}
+
 footer .footer-container {
   padding: 40px 0;
   background-color: #D9E0E7;
@@ -638,6 +670,8 @@ footer .footer-credits a svg {
 
 .app main {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   background-color: #F2F2F7;
 }
 
