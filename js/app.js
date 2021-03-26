@@ -32,6 +32,8 @@ $(document).ready(() => {
 
     contactOrderInit();
     contactOrder();
+
+
 });
 
 function handleInputPanelToggle() {
@@ -126,65 +128,17 @@ function filterGetOrder() {
  */
 
 function domAddContact(oContact) {
-    /*
-     * Avatar
-     */
-    let avatar = document.createElement('div');
-    avatar.className = 'avatar';
+    let template = $('.template-contact-item').clone();
+    let contact = $($(template.prop('content')).prop('firstElementChild'));
 
-    let img = document.createElement('img');
-    img.src = 'https://www.unsplash.it/100';
-    img.alt = '';
+    contact.find('.avatar img')
+        .attr('src', 'https://www.unsplash.it/100')
+        .attr('alt', '');
 
-    avatar.append(img);
+    contact.find('.contact-info')
+        .text(oContact.firstName + ' ' + oContact.lastName);
 
-    /*
-     * Contact info
-     */
-    let contactInfo = document.createElement('div');
-    contactInfo.className = 'contact-info';
-    contactInfo.innerText = oContact.firstName + ' ' + oContact.lastName;
-
-    /*
-     * Controls
-     */
-    let controls = document.createElement('div');
-    controls.className = 'controls';
-
-    // Button Call
-    let buttonCall = document.createElement('a');
-    buttonCall.className = 'btn-call';
-    buttonCall.href = 'tel:' + oContact.phoneNumber.replace(' ', '');
-    if(!oContact.phoneNumber) buttonCall.classList.add('no-phone-number');
-
-    let iconCall = document.createElement('i');
-    iconCall.className = 'fas fa-phone';
-
-    buttonCall.append(iconCall);
-    controls.append(buttonCall);
-
-    // Button More
-    let buttonMore = document.createElement('button');
-    buttonMore.type = 'button';
-    buttonMore.className = 'btn-more';
-
-    let iconMore = document.createElement('i');
-    iconMore.className = 'fas fa-angle-right';
-
-    buttonMore.append(iconMore);
-    controls.append(buttonMore);
-
-    /*
-     * Append child elements to parent
-     */
-    let contact = document.createElement('div');
-    contact.className = 'contact-item';
-
-    contact.append(avatar);
-    contact.append(contactInfo);
-    contact.append(controls);
-
-    contactList.append(contact);
+    contact.appendTo(contactList);
 }
 
 function domAddContactsFromStorage() {
