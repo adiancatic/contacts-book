@@ -68,7 +68,7 @@ function addContact() {
     const contact = getNewContact();
     storeContact(contact);
     domAddContact(contact);
-    inputPanel.removeClass('js-active');
+    toggleInputPanel();
     contactForm[0].reset();
 }
 

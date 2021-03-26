@@ -17,6 +17,7 @@
  * 3 - Components
  */
 @import '3-components/contact-item';
+@import '3-components/contact-list';
 @import '3-components/input-panel';
 @import '3-components/contact-filter';
 //@import '3-components/drag-and-drop';
@@ -31,7 +32,10 @@
 .app {
     display: flex;
     flex: 1;
+    overflow-y: auto;
     aside {
+        display: flex;
+        flex-direction: column;
         width: 380px;
         background-color: $white;
         border-right: 1px solid $gray200;

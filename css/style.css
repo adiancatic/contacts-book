@@ -54,7 +54,7 @@ body {
 body > .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
   border-left: 1px solid #D9E0E7;
   border-right: 1px solid #D9E0E7;
 }
@@ -294,6 +294,10 @@ a:hover, a:focus, a:active {
 
 .contact-item:last-child {
   border-bottom: 0;
+}
+
+.contact-list {
+  overflow-y: auto;
 }
 
 .input-panel {
@@ -621,9 +625,12 @@ footer .footer-credits a svg {
 .app {
   display: flex;
   flex: 1;
+  overflow-y: auto;
 }
 
 .app aside {
+  display: flex;
+  flex-direction: column;
   width: 380px;
   background-color: #FFF;
   border-right: 1px solid #D9E0E7;

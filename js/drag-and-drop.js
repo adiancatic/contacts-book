@@ -126,19 +126,18 @@ function previewAndUploadImage(image) {
     imgView.appendChild(overlay);
 
     // Read image
-    let render = new FileReader();
-    render.onload = function (e) {
-        // img.crossOrigin = 'anonymous';
+    let reader = new FileReader();
+    reader.onload = function (e) {
         img.src = e.target.result;
     };
-    render.readAsDataURL(image);
+    reader.readAsDataURL(image);
 
     // Create form data
     let formData = new FormData();
     formData.append('image', image);
 
     // Upload image
-    const uploadLocation = '../photos/';
+    const uploadLocation = 'photos/';
 
     let ajax = new XMLHttpRequest();
     ajax.open('POST', uploadLocation, true);
