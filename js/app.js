@@ -96,8 +96,9 @@ function storeContact(contact) {
 }
 
 function nextId() {
-    let id = JSON.parse(localStorage.getItem(NEXT_ID));
-    localStorage.setItem(NEXT_ID, JSON.stringify(id++));
+    const id = parseInt(JSON.parse(localStorage.getItem(NEXT_ID)));
+    const newId = id + 1;
+    localStorage.setItem(NEXT_ID, JSON.stringify(newId));
     return id;
 }
 
