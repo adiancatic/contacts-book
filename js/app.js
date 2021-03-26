@@ -32,8 +32,6 @@ $(document).ready(() => {
 
     contactOrderInit();
     contactOrder();
-
-
 });
 
 function handleInputPanelToggle() {
