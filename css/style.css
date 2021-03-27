@@ -311,10 +311,6 @@ a:hover, a:focus, a:active {
   flex: 1;
 }
 
-.contact-item:last-child {
-  border-bottom: 0;
-}
-
 .input-panel {
   background-color: #FFF;
   box-shadow: 0 10px 30px 0 rgba(1, 1, 31, 0.2);
@@ -649,12 +645,24 @@ a:hover, a:focus, a:active {
   border-radius: 4px;
   padding: 0 10px;
   cursor: pointer;
+  transition: all 0.175s ease;
 }
 
 .contact-view .nav-bar .btn-group .contact-btn i {
   margin-right: 6px;
   color: #6D7785;
   font-size: 14px;
+  transition: all 0.175s ease;
+}
+
+.contact-view .nav-bar .btn-group .contact-btn.contact-delete:hover, .contact-view .nav-bar .btn-group .contact-btn.contact-delete:focus, .contact-view .nav-bar .btn-group .contact-btn.contact-delete:active {
+  background-color: #FF2F2F;
+  border-color: #FF2F2F;
+  color: #FFF;
+}
+
+.contact-view .nav-bar .btn-group .contact-btn.contact-delete:hover i, .contact-view .nav-bar .btn-group .contact-btn.contact-delete:focus i, .contact-view .nav-bar .btn-group .contact-btn.contact-delete:active i {
+  color: #FFF;
 }
 
 .contact-view .nav-bar .btn-group .contact-btn {

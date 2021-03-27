@@ -25,10 +25,22 @@
                 border-radius: 4px;
                 padding: 0 10px;
                 cursor: pointer;
+                transition: $tr-quick;
                 i {
                     margin-right: 6px;
                     color: $gray500;
                     font-size: 14px;
+                    transition: $tr-quick;
+                }
+                &.contact-delete {
+                    &:hover, &:focus, &:active {
+                        background-color: $error;
+                        border-color: $error;
+                        color: $white;
+                        i {
+                            color: $white;
+                        }
+                    }
                 }
             }
             .contact-btn {

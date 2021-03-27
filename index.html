@@ -164,7 +164,7 @@
     </template>
 
     <template class="template-contact-view">
-        <div class="contact-view">
+        <div class="contact-view" data-id="">
 
             <div class="nav-bar">
                 <div class="btn-group">
@@ -172,7 +172,7 @@
                         <i class="fal fa-pencil"></i>
                         Edit
                     </button>
-                    <button type="button" class="contact-btn contact-delete">
+                    <button type="button" class="contact-btn contact-delete" onclick="domRemoveContact(this)">
                         <i class="fal fa-trash"></i>
                         Delete
                     </button>

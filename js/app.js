@@ -176,6 +176,21 @@ function addContact() {
     contactForm[0].reset();
 }
 
+function removeContact(contactId) {
+    if(!contactId) {
+        return;
+    }
+    contactId = parseInt(contactId);
+
+    let contacts = JSON.parse(localStorage.getItem(CONTACTS));
+    if(!contacts) {
+        return;
+    }
+
+    const newContacts = contacts.filter((c) => c.id !== contactId);
+    localStorage.setItem(CONTACTS, JSON.stringify(newContacts));
+}
+
 function getNewContact() {
     let contact = {};
     let formData = contactForm.serializeArray();
@@ -256,6 +271,30 @@ function domAddContact(oContact) {
         .text(oContact.firstName + ' ' + oContact.lastName);
 
     contact.appendTo(contactList);
+}
+
+function domRemoveContact(contactHtml) {
+    const contactId = $(contactHtml).closest('.contact-view').attr('data-id');
+    if(!contactId) {
+        return;
+    }
+
+    const oContact = getContactById(contactId);
+    if(!oContact) {
+        return;
+    }
+
+    const removalConfirmed = confirm('Are you sure you want to delete '
+        + oContact.firstName + ' ' + oContact.lastName
+        + ' from yor contact list?');
+
+    if(!removalConfirmed) {
+        return;
+    }
+
+    removeContact(contactId);
+    domUpdateContactList();
+    $('.contact-view').remove();
 }
 
 function domAddContactsFromStorage() {
@@ -339,6 +378,8 @@ function domShowContactDetailed(contact) {
 function domRenderContactDetailed(oContact) {
     let template = $('.template-contact-view').clone();
     let contact = $($(template.prop('content')).prop('firstElementChild'));
+
+    contact.attr('data-id', oContact.id);
 
     contact.find('.avatar img')
         .attr('src', oContact.avatar)
