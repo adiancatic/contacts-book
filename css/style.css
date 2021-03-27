@@ -625,10 +625,51 @@ a:hover, a:focus, a:active {
 
 .contact-view .nav-bar {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
   border-bottom: 1px solid #D9E0E7;
-  padding: 10px 0;
+  padding: 0 0 10px;
   margin-bottom: 24px;
+}
+
+.contact-view .nav-bar .btn-group {
+  display: flex;
+  margin-right: 16px;
+}
+
+.contact-view .nav-bar .btn-group .contact-btn {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  font-size: 12px;
+  font-weight: 300;
+  color: #585F6B;
+  background: none;
+  border: 1px solid #C1CED8;
+  border-radius: 4px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.contact-view .nav-bar .btn-group .contact-btn i {
+  margin-right: 6px;
+  color: #6D7785;
+  font-size: 14px;
+}
+
+.contact-view .nav-bar .btn-group .contact-btn {
+  border-right: 0;
+}
+
+.contact-view .nav-bar .btn-group .contact-btn:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.contact-view .nav-bar .btn-group .contact-btn:last-child {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-right: 1px solid #C1CED8;
 }
 
 .contact-view .contact-info {
@@ -642,10 +683,15 @@ a:hover, a:focus, a:active {
 }
 
 .contact-view .contact-info .contact .avatar {
+  width: 128px;
+  height: 128px;
   margin-right: 14px;
 }
 
 .contact-view .contact-info .contact .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 10px;
 }
 
