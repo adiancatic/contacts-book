@@ -387,6 +387,24 @@ a:hover, a:focus, a:active {
   outline: 0;
 }
 
+.input-panel .field.form-error input {
+  border-color: #FF2F2F;
+}
+
+.input-panel .field.form-error .error {
+  font-size: 12px;
+  color: #FF2F2F;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+}
+
+.input-panel .field.form-error .error::before {
+  content: '\f071';
+  font-family: 'Font Awesome 5 Pro';
+  margin-right: 4px;
+}
+
 .input-panel .field.avatar {
   width: 200px;
   height: 200px;

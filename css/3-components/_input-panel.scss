@@ -54,6 +54,23 @@
                 outline: 0;
             }
         }
+        &.form-error {
+            input {
+                border-color: $error;
+            }
+            .error {
+                font-size: 12px;
+                color: $error;
+                padding: 8px 0;
+                display: flex;
+                align-items: center;
+                &::before {
+                    content: '\f071';
+                    font-family: 'Font Awesome 5 Pro';
+                    margin-right: 4px;
+                }
+            }
+        }
         &.avatar {
             width: 200px;
             height: 200px;

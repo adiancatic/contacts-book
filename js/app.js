@@ -61,10 +61,114 @@ function localStorageInit() {
 }
 
 /*
+ * Contact form validation
+ */
+
+function validateContactInputForm() {
+    let validation;
+    let passedAll = true;
+
+    domRemoveValidationErrors();
+
+    const firstName = $('#add-contact-form #first-name');
+    validation = validateName(firstName.val());
+    if(typeof validation != 'boolean') {
+        passedAll = false;
+        domAddFormError(firstName, validation);
+    }
+
+    const lastName = $('#add-contact-form #last-name');
+    validation = validateName(lastName.val());
+    if(typeof validation != 'boolean') {
+        passedAll = false;
+        domAddFormError(lastName, validation);
+    }
+
+    const phoneNumber = $('#add-contact-form #phone-number');
+    validation = validatePhoneNumber(phoneNumber.val());
+    if(typeof validation != 'boolean') {
+        passedAll = false;
+        domAddFormError(phoneNumber, validation);
+    }
+
+    const email = $('#add-contact-form #e-mail');
+    validation = validateEmail(email.val());
+    if(typeof validation != 'boolean') {
+        passedAll = false;
+        domAddFormError(email, validation);
+    }
+
+    return passedAll;
+}
+
+function domAddFormError(formField, errorMsg) {
+    const parent = formField.parent();
+    parent.addClass('form-error');
+
+    const error = document.createElement('span');
+    error.className = 'error';
+    error.innerText = errorMsg;
+
+    $(error).appendTo(parent);
+}
+
+function validateName(name) {
+    let regex;
+
+    // Check if not empty or only whitespace
+    regex = new RegExp(/^\s*$/, 'i');
+    if(name.match(regex)) return 'Field can not be empty.';
+
+    // Check if only letters
+    regex = new RegExp(/^[a-zA-z]+\s*$/, 'i');
+    if(!name.match(regex)) return 'Only letters and spaces allowed.';
+
+    // Check if at least 1 character
+    regex = new RegExp(/^.+$/, 'i');
+    if(!regex) return 'At least one character.';
+
+    return true;
+}
+
+function validatePhoneNumber(number) {
+    let regex;
+
+    // Check if not empty or only whitespace
+    regex = new RegExp(/^\s*$/, 'i');
+    if(number.match(regex)) return 'Field can not be empty.';
+
+    // Check if only numbers ('+' allowed as first character)
+    regex = new RegExp(/^\+?[0-9]+\s*$/, 'i');
+    if(!number.match(regex)) return 'Only numbers allowed.';
+
+    return true;
+}
+
+function validateEmail(email) {
+    let regex;
+
+    regex = new RegExp(/^([]?|[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]+)$/, 'i');
+    if(!email.match(regex)) return 'Email format is wrong.';
+
+    return true;
+}
+
+function domRemoveValidationErrors() {
+    const form = $('#add-contact-form');
+    form.find('span.error').remove();
+    form.find('.field').removeClass('form-error');
+}
+
+/*
  * Contact storage handling
  */
 
 function addContact() {
+    const isValidForm = validateContactInputForm();
+    if(!isValidForm) {
+        return;
+    }
+
     const contact = getNewContact();
     storeContact(contact);
     domAddContact(contact);
