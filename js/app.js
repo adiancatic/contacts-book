@@ -286,7 +286,7 @@ function domRemoveContact(contactHtml) {
 
     const removalConfirmed = confirm('Are you sure you want to delete '
         + oContact.firstName + ' ' + oContact.lastName
-        + ' from yor contact list?');
+        + ' from your contact list?');
 
     if(!removalConfirmed) {
         return;
