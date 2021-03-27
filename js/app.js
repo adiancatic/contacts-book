@@ -294,7 +294,7 @@ function domRemoveContact(contactHtml) {
 
     removeContact(contactId);
     domUpdateContactList();
-    $('.contact-view').remove();
+    domClearContactView();
 }
 
 function domAddContactsFromStorage() {
@@ -401,6 +401,10 @@ function domRenderContactDetailed(oContact) {
         .text(oContact.email);
 
     contact.appendTo('main');
+}
+
+function domClearContactView() {
+    $('.contact-view').remove();
 }
 
 /*
