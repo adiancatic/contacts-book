@@ -1,15 +1,21 @@
 .contact-view {
     background-color: $white;
-    padding: 24px;
+    padding: 15px;
     flex: 1;
     pointer-events: initial;
+    @include mqf($bp-sm) {
+        padding: 24px;
+    }
     .nav-bar {
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-between;
         border-bottom: 1px solid $gray200;
         padding: 0 0 10px;
         margin-bottom: 24px;
+        @include mqf($bp-sm) {
+            justify-content: flex-end;
+        }
         .btn-group {
             display: flex;
             margin-right: 16px;
@@ -42,6 +48,10 @@
                         }
                     }
                 }
+                &[disabled] {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
             }
             .contact-btn {
                 border-right: 0;
@@ -63,16 +73,58 @@
         align-items: flex-end;
         justify-content: space-between;
         .contact {
+            width: 100%;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            @include mqf($bp-sm) {
+                flex-direction: row;
+            }
             .avatar {
                 width: 128px;
                 height: 128px;
-                margin-right: 14px;
+                margin-bottom: 24px;
+                @include mqf($bp-sm) {
+                    margin-bottom: 0;
+                    margin-right: 24px;
+                }
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                     border-radius: 10px;
+                }
+            }
+            .info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                @include mqf($bp-sm) {
+                    align-items: initial;
+                }
+                .full-name {
+                    display: inline-flex;
+                    margin-top: 14px;
+                    margin-bottom: 8px;
+                    .first-name, .last-name {
+                        margin: 0;
+                        font-weight: $fw-bold;
+                    }
+                    .last-name {
+                        margin-left: 6px;
+                    }
+                }
+                .contacts {
+                    display: flex;
+                    flex-direction: column;
+                    .phone-number, .e-mail {
+                        padding: 4px 0;
+                        font-weight: $fw-regular;
+                        text-align: center;
+                        @include mqf($bp-sm) {
+                            text-align: initial;
+                        }
+                    }
                 }
             }
         }

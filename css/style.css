@@ -813,18 +813,30 @@ a:hover, a:focus, a:active {
 
 .contact-view {
   background-color: #FFF;
-  padding: 24px;
+  padding: 15px;
   flex: 1;
   pointer-events: initial;
+}
+
+@media screen and (min-width: 767px) {
+  .contact-view {
+    padding: 24px;
+  }
 }
 
 .contact-view .nav-bar {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   border-bottom: 1px solid #D9E0E7;
   padding: 0 0 10px;
   margin-bottom: 24px;
+}
+
+@media screen and (min-width: 767px) {
+  .contact-view .nav-bar {
+    justify-content: flex-end;
+  }
 }
 
 .contact-view .nav-bar .btn-group {
@@ -864,6 +876,11 @@ a:hover, a:focus, a:active {
   color: #FFF;
 }
 
+.contact-view .nav-bar .btn-group .contact-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .contact-view .nav-bar .btn-group .contact-btn {
   border-right: 0;
 }
@@ -886,13 +903,29 @@ a:hover, a:focus, a:active {
 }
 
 .contact-view .contact-info .contact {
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 767px) {
+  .contact-view .contact-info .contact {
+    flex-direction: row;
+  }
 }
 
 .contact-view .contact-info .contact .avatar {
   width: 128px;
   height: 128px;
-  margin-right: 14px;
+  margin-bottom: 24px;
+}
+
+@media screen and (min-width: 767px) {
+  .contact-view .contact-info .contact .avatar {
+    margin-bottom: 0;
+    margin-right: 24px;
+  }
 }
 
 .contact-view .contact-info .contact .avatar img {
@@ -900,6 +933,50 @@ a:hover, a:focus, a:active {
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
+}
+
+.contact-view .contact-info .contact .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 767px) {
+  .contact-view .contact-info .contact .info {
+    align-items: initial;
+  }
+}
+
+.contact-view .contact-info .contact .info .full-name {
+  display: inline-flex;
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
+
+.contact-view .contact-info .contact .info .full-name .first-name, .contact-view .contact-info .contact .info .full-name .last-name {
+  margin: 0;
+  font-weight: 700;
+}
+
+.contact-view .contact-info .contact .info .full-name .last-name {
+  margin-left: 6px;
+}
+
+.contact-view .contact-info .contact .info .contacts {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-view .contact-info .contact .info .contacts .phone-number, .contact-view .contact-info .contact .info .contacts .e-mail {
+  padding: 4px 0;
+  font-weight: 400;
+  text-align: center;
+}
+
+@media screen and (min-width: 767px) {
+  .contact-view .contact-info .contact .info .contacts .phone-number, .contact-view .contact-info .contact .info .contacts .e-mail {
+    text-align: initial;
+  }
 }
 
 footer .footer-container {
