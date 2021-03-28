@@ -1,7 +1,11 @@
 .contact-filter {
     display: flex;
-    padding: 14px 20px;
+    padding: 10px 15px;
     background-color: $gray100;
+    @include mqf($bp-sm) {
+        padding: 14px 20px;
+        transition: $tr-default;
+    }
     .filter-field {
         width: 100%;
         height: 38px;

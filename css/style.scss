@@ -37,14 +37,27 @@
     aside {
         display: flex;
         flex-direction: column;
-        width: 380px;
+        width: 100vw;
         background-color: $white;
-        border-right: 1px solid $gray200;
+        @include mqf($bp-sm) {
+            width: 380px;
+            border-right: 1px solid $gray200;
+            transition: $tr-default;
+        }
     }
     main {
         flex: 1;
         display: flex;
         flex-direction: column;
-        background-color: $gray100;
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        @include mqf($bp-sm) {
+            background-color: $gray100;
+            position: initial;
+        }
     }
 }

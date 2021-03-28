@@ -55,8 +55,13 @@ body > .container {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  border-left: 1px solid #D9E0E7;
-  border-right: 1px solid #D9E0E7;
+}
+
+@media screen and (min-width: 767px) {
+  body > .container {
+    border-left: 1px solid #D9E0E7;
+    border-right: 1px solid #D9E0E7;
+  }
 }
 
 .container {
@@ -79,14 +84,26 @@ body > .container {
 }
 
 .btn {
-  height: 48px;
+  height: 38px;
   border: 0;
   border-radius: 4px;
   display: inline-flex;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 16px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
+}
+
+@media screen and (min-width: 767px) {
+  .btn {
+    height: 48px;
+    padding: 0 24px;
+    font-size: 14px;
+  }
+}
+
+.btn i + .btn-text {
+  margin-left: 6px;
 }
 
 .btn-primary {
@@ -289,16 +306,30 @@ a:hover, a:focus, a:active {
 .contact-item {
   display: flex;
   align-items: center;
-  padding: 14px 20px;
+  padding: 10px 15px;
   border-bottom: 1px solid #D9E0E7;
 }
 
+@media screen and (min-width: 767px) {
+  .contact-item {
+    padding: 14px 20px;
+  }
+}
+
 .contact-item .avatar {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   border-radius: 6px;
   overflow: hidden;
   margin-right: 14px;
+}
+
+@media screen and (min-width: 767px) {
+  .contact-item .avatar {
+    width: 64px;
+    height: 64px;
+    transition: all 0.4s ease;
+  }
 }
 
 .contact-item .avatar img {
@@ -453,8 +484,15 @@ a:hover, a:focus, a:active {
 
 .contact-filter {
   display: flex;
-  padding: 14px 20px;
+  padding: 10px 15px;
   background-color: #F2F2F7;
+}
+
+@media screen and (min-width: 767px) {
+  .contact-filter {
+    padding: 14px 20px;
+    transition: all 0.4s ease;
+  }
 }
 
 .contact-filter .filter-field {
@@ -590,8 +628,8 @@ a:hover, a:focus, a:active {
  */
 .main-nav {
   display: flex;
-  height: 80px;
-  padding: 0 20px;
+  height: 60px;
+  padding: 0 15px;
   background-color: #FFF;
   align-items: center;
   justify-content: space-between;
@@ -599,14 +637,40 @@ a:hover, a:focus, a:active {
   position: relative;
 }
 
+@media screen and (min-width: 767px) {
+  .main-nav {
+    height: 80px;
+    transition: all 0.4s ease;
+    padding: 0 20px;
+  }
+}
+
 .main-nav .nav-brand {
   display: block;
-  width: 209px;
-  height: 48px;
+  width: 166px;
+  height: 38px;
   background-image: url("../assets/logo.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+@media screen and (min-width: 767px) {
+  .main-nav .nav-brand {
+    width: 209px;
+    height: 48px;
+    transition: all 0.4s ease;
+  }
+}
+
+.main-nav .btn .btn-text {
+  display: none;
+}
+
+@media screen and (min-width: 767px) {
+  .main-nav .btn .btn-text {
+    display: flex;
+  }
 }
 
 .contact-list {
@@ -617,6 +681,7 @@ a:hover, a:focus, a:active {
   background-color: #FFF;
   padding: 24px;
   flex: 1;
+  pointer-events: initial;
 }
 
 .contact-view .nav-bar {
@@ -735,16 +800,35 @@ footer .footer-credits a svg {
 .app aside {
   display: flex;
   flex-direction: column;
-  width: 380px;
+  width: 100vw;
   background-color: #FFF;
-  border-right: 1px solid #D9E0E7;
+}
+
+@media screen and (min-width: 767px) {
+  .app aside {
+    width: 380px;
+    border-right: 1px solid #D9E0E7;
+    transition: all 0.4s ease;
+  }
 }
 
 .app main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: #F2F2F7;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+@media screen and (min-width: 767px) {
+  .app main {
+    background-color: #F2F2F7;
+    position: initial;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

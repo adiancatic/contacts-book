@@ -1,19 +1,37 @@
 .main-nav {
     display: flex;
-    height: 80px;
-    padding: 0 20px;
+    height: 60px;
+    padding: 0 15px;
     background-color: $white;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid $gray200;
     position: relative;
+    @include mqf($bp-sm) {
+        height: 80px;
+        transition: $tr-default;
+        padding: 0 20px;
+    }
     .nav-brand {
         display: block;
-        width: 209px;
-        height: 48px;
+        width: 166px;
+        height: 38px;
         background-image: url("../assets/logo.svg");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+        @include mqf($bp-sm) {
+            width: 209px;
+            height: 48px;
+            transition: $tr-default;
+        }
+    }
+    .btn {
+        .btn-text {
+            display: none;
+            @include mqf($bp-sm) {
+                display: flex;
+            }
+        }
     }
 }

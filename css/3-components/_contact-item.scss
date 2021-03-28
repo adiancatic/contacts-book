@@ -1,14 +1,22 @@
 .contact-item {
     display: flex;
     align-items: center;
-    padding: 14px 20px;
+    padding: 10px 15px;
     border-bottom: 1px solid $gray200;
+    @include mqf($bp-sm) {
+        padding: 14px 20px;
+    }
     .avatar {
-        width: 64px;
-        height: 64px;
+        width: 48px;
+        height: 48px;
         border-radius: 6px;
         overflow: hidden;
         margin-right: 14px;
+        @include mqf($bp-sm) {
+            width: 64px;
+            height: 64px;
+            transition: $tr-default;
+        }
         img {
             width: 100%;
             height: 100%;
