@@ -342,6 +342,42 @@ a:hover, a:focus, a:active {
   flex: 1;
 }
 
+.contact-item .controls .btn-more {
+  width: 42px;
+  height: 42px;
+  border-radius: 100%;
+  border: 0;
+  background-color: #F2F2F7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+@media screen and (min-width: 767px) {
+  .contact-item .controls .btn-more {
+    display: none;
+  }
+}
+
+.contact-item .controls .btn-more i {
+  color: #585F6B;
+  transition: all 0.4s ease;
+}
+
+.contact-item .controls .btn-more:hover, .contact-item .controls .btn-more:focus, .contact-item .controls .btn-more:active {
+  background-color: #FFE9EF;
+}
+
+.contact-item .controls .btn-more:hover i, .contact-item .controls .btn-more:focus i, .contact-item .controls .btn-more:active i {
+  color: #EA3D67;
+}
+
+.contact-item:hover .controls .btn-more, .contact-item:focus .controls .btn-more, .contact-item:active .controls .btn-more {
+  display: flex;
+}
+
 .input-panel {
   background-color: #FFF;
   box-shadow: 0 10px 30px 0 rgba(1, 1, 31, 0.2);

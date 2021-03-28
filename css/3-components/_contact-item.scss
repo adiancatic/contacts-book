@@ -27,6 +27,37 @@
         flex: 1;
     }
     .controls {
-
+        .btn-more {
+            width: 42px;
+            height: 42px;
+            border-radius: 100%;
+            border: 0;
+            background-color: $gray100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: $tr-default;
+            @include mqf($bp-sm) {
+                display: none;
+            }
+            i {
+                color: $gray600;
+                transition: $tr-default;
+            }
+            &:hover, &:focus, &:active {
+                background-color: $primry100;
+                i {
+                    color: $primry500;
+                }
+            }
+        }
+    }
+    &:hover, &:focus, &:active {
+        .controls {
+            .btn-more {
+                display: flex;
+            }
+        }
     }
 }
