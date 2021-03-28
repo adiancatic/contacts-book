@@ -7,49 +7,82 @@
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid $gray200;
-        padding: 14px 24px;
+        padding: 10px 15px;
+        @include mqf($bp-sm) {
+            padding: 14px 24px;
+        }
         .header-title {
             margin: 0;
             font-weight: $fw-regular;
         }
     }
     .panel-body {
-        padding: 30px 24px;
+        padding: 24px 15px 20px;
+        @include mqf($bp-sm) {
+            padding: 30px 24px;
+        }
         .add-contact-form {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            @include mqf($bp-sm) {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
             .col-avatar {
-                padding-right: 30px;
+                display: flex;
+                justify-content: center;
+                @include mqf($bp-sm) {
+                    padding-right: 30px;
+                }
             }
             .col-fields {
                 flex: 1;
                 display: flex;
                 flex-wrap: wrap;
                 .field {
-                    flex: 50%;
+                    flex: 100%;
+                    @include mqf($bp-sm) {
+                        flex: 50%;
+                    }
                 }
             }
             .col-submit {
                 flex: 100%;
                 display: flex;
-                justify-content: flex-end;
-                padding: 0 20px;
+                padding: 15px 0 0;
+                @include mqf($bp-sm) {
+                    padding: 0 20px;
+                    justify-content: flex-end;
+                }
+                .btn {
+                    width: 100%;
+                    justify-content: center;
+                    @include mqf($bp-xs) {
+                        width: auto;
+                        justify-content: initial;
+                    }
+                }
             }
         }
     }
     .field {
-        padding: 0 20px;
         margin-bottom: 20px;
+        @include mqf($bp-sm) {
+            padding: 0 20px;
+        }
         label {
             display: none;
         }
         input {
-            font-size: 28px;
+            font-size: 22px;
             border: 0;
             border-bottom: 1px solid $gray200;
             width: 100%;
             padding: 14px 0;
             font-weight: $fw-semibold;
+            @include mqf($bp-sm) {
+                font-size: 28px;
+            }
             &::placeholder {
                 color: $gray400;
             }
@@ -75,8 +108,8 @@
             }
         }
         &.avatar {
-            width: 200px;
-            height: 200px;
+            width: 160px;
+            height: 160px;
             border: 2px dashed $gray300;
             border-radius: 14px;
             display: flex;
@@ -84,6 +117,10 @@
             justify-content: center;
             cursor: pointer;
             position: relative;
+            @include mqf($bp-sm) {
+                width: 200px;
+                height: 200px;
+            }
             &::after {
                 content: '';
                 position: absolute;
@@ -104,8 +141,12 @@
             }
             .drop-message {
                 text-align: center;
-                font-size: 14px;
+                font-size: 12px;
                 color: $gray500;
+                margin: 0 8px;
+                @include mqf($bp-sm) {
+                    font-size: 14px;
+                }
             }
         }
     }

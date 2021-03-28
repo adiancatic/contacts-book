@@ -353,7 +353,13 @@ a:hover, a:focus, a:active {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #D9E0E7;
-  padding: 14px 24px;
+  padding: 10px 15px;
+}
+
+@media screen and (min-width: 767px) {
+  .input-panel .panel-header {
+    padding: 14px 24px;
+  }
 }
 
 .input-panel .panel-header .header-title {
@@ -362,16 +368,36 @@ a:hover, a:focus, a:active {
 }
 
 .input-panel .panel-body {
-  padding: 30px 24px;
+  padding: 24px 15px 20px;
+}
+
+@media screen and (min-width: 767px) {
+  .input-panel .panel-body {
+    padding: 30px 24px;
+  }
 }
 
 .input-panel .panel-body .add-contact-form {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 767px) {
+  .input-panel .panel-body .add-contact-form {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 .input-panel .panel-body .add-contact-form .col-avatar {
-  padding-right: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 767px) {
+  .input-panel .panel-body .add-contact-form .col-avatar {
+    padding-right: 30px;
+  }
 }
 
 .input-panel .panel-body .add-contact-form .col-fields {
@@ -381,19 +407,48 @@ a:hover, a:focus, a:active {
 }
 
 .input-panel .panel-body .add-contact-form .col-fields .field {
-  flex: 50%;
+  flex: 100%;
+}
+
+@media screen and (min-width: 767px) {
+  .input-panel .panel-body .add-contact-form .col-fields .field {
+    flex: 50%;
+  }
 }
 
 .input-panel .panel-body .add-contact-form .col-submit {
   flex: 100%;
   display: flex;
-  justify-content: flex-end;
-  padding: 0 20px;
+  padding: 15px 0 0;
+}
+
+@media screen and (min-width: 767px) {
+  .input-panel .panel-body .add-contact-form .col-submit {
+    padding: 0 20px;
+    justify-content: flex-end;
+  }
+}
+
+.input-panel .panel-body .add-contact-form .col-submit .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+@media screen and (min-width: 577px) {
+  .input-panel .panel-body .add-contact-form .col-submit .btn {
+    width: auto;
+    justify-content: initial;
+  }
 }
 
 .input-panel .field {
-  padding: 0 20px;
   margin-bottom: 20px;
+}
+
+@media screen and (min-width: 767px) {
+  .input-panel .field {
+    padding: 0 20px;
+  }
 }
 
 .input-panel .field label {
@@ -401,12 +456,18 @@ a:hover, a:focus, a:active {
 }
 
 .input-panel .field input {
-  font-size: 28px;
+  font-size: 22px;
   border: 0;
   border-bottom: 1px solid #D9E0E7;
   width: 100%;
   padding: 14px 0;
   font-weight: 600;
+}
+
+@media screen and (min-width: 767px) {
+  .input-panel .field input {
+    font-size: 28px;
+  }
 }
 
 .input-panel .field input::placeholder {
@@ -436,8 +497,8 @@ a:hover, a:focus, a:active {
 }
 
 .input-panel .field.avatar {
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   border: 2px dashed #C1CED8;
   border-radius: 14px;
   display: flex;
@@ -445,6 +506,13 @@ a:hover, a:focus, a:active {
   justify-content: center;
   cursor: pointer;
   position: relative;
+}
+
+@media screen and (min-width: 767px) {
+  .input-panel .field.avatar {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .input-panel .field.avatar::after {
@@ -467,8 +535,15 @@ a:hover, a:focus, a:active {
 
 .input-panel .field.avatar .drop-message {
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   color: #6D7785;
+  margin: 0 8px;
+}
+
+@media screen and (min-width: 767px) {
+  .input-panel .field.avatar .drop-message {
+    font-size: 14px;
+  }
 }
 
 .input-panel-wrapper {
