@@ -380,7 +380,6 @@ a:hover, a:focus, a:active {
 
 .input-panel {
   background-color: #FFF;
-  box-shadow: 0 10px 30px 0 rgba(1, 1, 31, 0.2);
   pointer-events: initial;
 }
 
@@ -597,6 +596,10 @@ a:hover, a:focus, a:active {
   transform: translateY(0);
 }
 
+.input-panel-wrapper.js-active .input-panel {
+  box-shadow: 0 10px 30px 0 rgba(1, 1, 31, 0.2);
+}
+
 .backdrop {
   background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
@@ -757,9 +760,138 @@ a:hover, a:focus, a:active {
   color: #EA3D67;
 }
 
+.field.avatar {
+  position: relative;
+}
+
+.field.avatar .avatar-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.field.avatar .avatar-preview .image-view {
+  display: flex;
+}
+
+.field.avatar .avatar-preview .image-view img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /*
  * 4 - Layout
  */
+.app {
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.app aside {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  background-color: #FFF;
+}
+
+@media screen and (min-width: 767px) {
+  .app aside {
+    width: 380px;
+    border-right: 1px solid #D9E0E7;
+    transition: all 0.4s ease;
+  }
+}
+
+.app main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+@media screen and (min-width: 767px) {
+  .app main {
+    background-color: #FFF;
+    position: initial;
+  }
+}
+
+.app.help {
+  background-color: #FFF;
+}
+
+.app.help .source-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app.help .source-item {
+  padding: 30px;
+}
+
+.app.help .source-item .description {
+  margin: 0 0 14px;
+}
+
+.app.help .source-item .link {
+  display: inline-flex;
+  align-items: center;
+  color: #EA3D67;
+  background-color: #FFE9EF;
+  border-radius: 6px;
+  padding: 8px 14px;
+}
+
+.app.help .source-item .link i {
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(234, 61, 103, 0.1);
+  margin-right: 8px;
+}
+
+.help-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid rgba(234, 61, 103, 0.3);
+  border-right: 0;
+  border-radius: 6px 0 0 6px;
+  background-color: #FFE9EF;
+  color: #EA3D67;
+  font-size: 18px;
+  transition: all 0.4s ease;
+}
+
+.help-btn:hover, .help-btn:focus, .help-btn:active {
+  background-color: #EA3D67;
+  color: #FFF;
+}
+
 .main-nav {
   display: flex;
   height: 60px;
@@ -1000,46 +1132,6 @@ footer .footer-credits a {
 footer .footer-credits a svg {
   fill: #191920;
   margin-right: 6px;
-}
-
-.app {
-  display: flex;
-  flex: 1;
-  overflow-y: auto;
-}
-
-.app aside {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  background-color: #FFF;
-}
-
-@media screen and (min-width: 767px) {
-  .app aside {
-    width: 380px;
-    border-right: 1px solid #D9E0E7;
-    transition: all 0.4s ease;
-  }
-}
-
-.app main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-}
-
-@media screen and (min-width: 767px) {
-  .app main {
-    background-color: #F2F2F7;
-    position: initial;
-  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,6 +1,5 @@
 .input-panel {
     background-color: $white;
-    box-shadow: $bs-large;
     pointer-events: initial;
     .panel-header {
         display: flex;
@@ -163,6 +162,9 @@
     pointer-events: none;
     &.js-active {
         transform: translateY(0);
+        .input-panel {
+            box-shadow: $bs-large;
+        }
     }
 }
 

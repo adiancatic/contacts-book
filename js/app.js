@@ -174,6 +174,7 @@ function addContact() {
     domAddContact(contact);
     toggleInputPanel();
     contactForm[0].reset();
+    $('#avatar-preview').remove();
 }
 
 function removeContact(contactId) {
@@ -211,8 +212,6 @@ function storeContact(contact) {
     contact.id = nextId();
     contacts.push(contact);
     localStorage.setItem(CONTACTS, JSON.stringify(contacts));
-
-    console.log(JSON.parse(localStorage.getItem(CONTACTS))); // TODO remove
 }
 
 function nextId() {

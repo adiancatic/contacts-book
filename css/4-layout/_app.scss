@@ -1,0 +1,90 @@
+.app {
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+    aside {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        background-color: $white;
+        @include mqf($bp-sm) {
+            width: 380px;
+            border-right: 1px solid $gray200;
+            transition: $tr-default;
+        }
+    }
+    main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        @include mqf($bp-sm) {
+            background-color: $white;
+            position: initial;
+        }
+    }
+}
+
+.app {
+    &.help {
+        background-color: $white;
+        .source-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .source-item {
+            padding: 30px;
+            .description {
+                margin: 0 0 14px;
+            }
+            .link {
+                display: inline-flex;
+                align-items: center;
+                color: $primry500;
+                background-color: $primry100;
+                border-radius: 6px;
+                padding: 8px 14px;
+                i {
+                    width: 30px;
+                    height: 30px;
+                    font-size: 14px;
+                    border-radius: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: rgba($primry500, 0.1);
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+}
+
+.help-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid rgba($primry500, 0.3);
+    border-right: 0;
+    border-radius: 6px 0 0 6px;
+    background-color: $primry100;
+    color: $primry500;
+    font-size: 18px;
+    transition: $tr-default;
+    &:hover, &:focus, &:active {
+        background-color: $primry500;
+        color: $white;
+    }
+}
