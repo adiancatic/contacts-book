@@ -371,11 +371,11 @@ a:hover, a:focus, a:active {
 }
 
 .input-panel .panel-body .add-contact-form .col-avatar {
-  flex: 25%;
+  padding-right: 30px;
 }
 
 .input-panel .panel-body .add-contact-form .col-fields {
-  flex: 75%;
+  flex: 1;
   display: flex;
   flex-wrap: wrap;
 }
@@ -386,6 +386,9 @@ a:hover, a:focus, a:active {
 
 .input-panel .panel-body .add-contact-form .col-submit {
   flex: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20px;
 }
 
 .input-panel .field {
@@ -440,6 +443,26 @@ a:hover, a:focus, a:active {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.input-panel .field.avatar::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 14px;
+  border: 2px solid #C1CED8;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.input-panel .field.avatar:hover::after, .input-panel .field.avatar:focus::after, .input-panel .field.avatar:active::after {
+  opacity: 1;
 }
 
 .input-panel .field.avatar .drop-message {
