@@ -174,7 +174,7 @@ function addContact() {
     domAddContact(contact);
     toggleInputPanel();
     contactForm[0].reset();
-    $('#avatar-preview').remove();
+    $('#avatar-preview').children().remove();
 }
 
 function removeContact(contactId) {
